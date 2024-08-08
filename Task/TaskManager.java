@@ -98,7 +98,7 @@ public class TaskManager {
         saveTasksToFile();
     }
 
-    private static void viewTasks(){
+    private static void viewAllTasks(){
         if(taskList.isEmpty()){
             System.out.println("No Tasks Found!");
             return;
@@ -139,7 +139,7 @@ public class TaskManager {
                     break;
 
                 case 2:
-                    viewTasks();
+                    viewAllTasks();
                     break;
 
                 case 3:
