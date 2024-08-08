@@ -5,16 +5,18 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class EmployeeJsonUpdater {
     public static void main(String[] args) {
-        String jsonFilePath = "employees.json";
+        Path filePath = Paths.get("employees.json");
         String fieldToUpdate = "department";
         String newValue = "Technology";
 
+
         try {
-            String jsonContent = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
+            String jsonContent = new String(Files.readAllBytes(filePath));
             JsonArray employeesArray = JsonParser.parseString(jsonContent).getAsJsonArray();
 
             for (int i = 0; i < employeesArray.size(); i++) {
@@ -23,10 +25,10 @@ public class EmployeeJsonUpdater {
             }
 
             Gson gson = new Gson();
-            Files.write(Paths.get(jsonFilePath), gson.toJson(employeesArray).getBytes());
+            Files.write(filePath, gson.toJson(employeesArray).getBytes());
             System.out.println("Field Updated Successfully!");
         }catch (IOException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
